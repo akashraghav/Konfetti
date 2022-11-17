@@ -1,22 +1,29 @@
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+
 buildscript {
-    ext.kotlin_version = '1.4.21'
+    ext.konfetti_version = '2.0.2'
+    ext.kotlin_version = '1.6.0'
+    ext.compose_version = '1.1.0-rc01'
+    ext.coroutines_version = '1.4.2'
     repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
         google()
-        jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
-        classpath "com.diffplug.spotless:spotless-plugin-gradle:5.9.0"
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:5.14.2"
+        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
+
+apply from: "${rootDir}/scripts/publish-root.gradle"
